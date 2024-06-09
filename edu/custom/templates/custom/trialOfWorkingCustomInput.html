@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="contact-box">
+            <div class="left"></div>
+            <!-- <div class="right">
+                <h2>Add custom content</h2>
+                <form method="POST" class="flex items-center">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
+                </form>
+            </div> -->
+            <input type="text" id="userInput">
+            <!-- <button id="processUserInput">Process Input</button> -->
+        </div>
+        <div id="displayArea"></div>
+
+    </div>
+    <p class="custom-content-message" id="custom-content-m"></p>
+    <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+          <p class="text-xl font-semibold pb-5">Get Simpler Explanation</p>
+          </p>
+          <aside>
+            <!-- <p id="simpleExplanation">Simpler Explanation</p> -->
+            <button id="getSimplerExplanation" value="simpler-explanation" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">Simpler Explanation</button>
+          </aside>
+          <!-- <a
+            href="#"
+            class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4"
+          >
+            Get to know us
+          </a> -->
+        </div>
+
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+          <p class="text-xl font-semibold pb-5">Get Extra Information</p>
+          <div class="grid grid-cols-3 gap-3"></div>
+          <aside>
+            <p id="testContent">{{processed_data}}</p>
+            <button id="getExtraInfo" value="extra-information" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">Extra Information</button>
+          </aside>
+          <!-- <a
+            href="#"
+            class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-6"
+          >
+            <i class="fab fa-instagram mr-2"></i> Follow @dgrzyb
+          </a> -->
+        </div>
+
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+          <p class="text-xl font-semibold pb-5">Get Questions with Answers</p>
+          </p>
+          <aside>
+            <!-- <p id="simpleExplanation">Simpler Explanation</p> -->
+            <button id="getQuestionsAndAnswers" value="question-answer" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">Questions</button>
+          </aside>
+          <!-- <a
+            href="#"
+            class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4"
+          >
+            Get to know us
+          </a> -->
+        </div>
+
+      </aside>
+</body>
+<script>
+     // processUserInputButton.addEventListener("click", function() {
+    //     const userContent = userInput.value;
+    //     console.log("User input:", userContent);
+        // You can call your function here with the user input
+        // sendContentToDjango(chapterId, userContent, buttonID);
+    const content = document.getElementById("userInput");
+    const chapterContent=content.value;
+    console.log(chapterContent)
+    const processUserInputButton = document.getElementById("processUserInput");
+   
+      const getSimplerContentButton=document.getElementById("getSimplerExplanation");
+      getSimplerContentButton.addEventListener("click",
+      function(){
+        const chapterContent=content.value;
+        console.log(chapterContent)
+        const buttonID="simpler explanation";
+        // console.log(chapterContent);
+        console.log(chapterContent)
+        content.textContent="Getting simpler explanation .........";
+        sendContentToDjango(chapterContent,buttonID);
+      })
+
+      const getExtraContentButton=document.getElementById("getExtraInfo");
+      getExtraContentButton.addEventListener("click",function(){
+        const chapterContent=content.value;
+        console.log(chapterContent)
+        const buttonID="extra information";
+        // console.log(chapterContent);
+        content.innerHTML="Getting extra information ........";
+        sendContentToDjango(chapterContent,buttonID);
+      })
+
+      const getQuestionAnswerButton=document.getElementById("getQuestionsAndAnswers");
+      getQuestionAnswerButton.addEventListener("click",function(){
+        const chapterContent=content.value;
+        console.log(chapterContent)
+        const buttonID="5 question and answers with answers at the end. Make sure the questions are seperated by a line ";
+        // console.log(chapterContent);
+        content.innerHTML="Questions are being framed ";
+        sendContentToDjango(chapterContent,buttonID);
+      })
+
+      function sendContentToDjango(chapterContent, buttonID) {
+        // console.log(chapterContent)
+        // console.log(chapterId)
+    fetch(`/custom/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            'chapterContent': chapterContent,
+            'buttonID': buttonID
+        })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // Parse response as plain text
+        })
+        .then(data => {
+            console.log(data); 
+            const contentElement = document.getElementById("userInput");
+            const answers = data.split("<br/><br/>---<br/><br/>");
+            const formattedAnswers = answers.map(answer => "<p>" + answer.trim() + "</p>").join("");
+            contentElement.innerHTML = formattedAnswers; 
+            const displayArea=document.getElementById('displayArea');
+            displayArea.textContent=data;
+        })
+        .catch(error => console.error('Error:', error));
+        }
+</script>
+</html>

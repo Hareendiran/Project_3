@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{%block title %} {%endblock%} - Learning App</title>
+  </head>
+  <body>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Accessible Design with Tailwind CSS</title>
+        <link
+          href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <div class="bg-gray-300">
+          <nav class="py-4 px-6 flex justify-between items-center">
+            <a href="/" class="text-xl font-semibold text-blue-800">Learning App</a>
+            <div class="space-x-6">
+              <a href="{% url '' %}" class="text-lg font-semibold hover:text-gray-500">Home</a>
+              <a href="{% url 'about-us' %}" class="text-lg font-semibold hover:text-gray-500"
+                >About Us</a
+              >
+              <a href="{% url 'dashboard' %}" class="text-lg font-semibold hover:text-gray-500"
+                >Courses</a
+              >
+              <a href="{% url 'contact' %}" class="text-lg font-semibold hover:text-gray-500"
+                >Contact us</a
+              >
+              <a
+                href="{% url 'login' %}"
+                class="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-gray-700"
+                >Login</a
+              >
+              <a
+                href="{% url 'register' %}"
+                class="px-6 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl hover:bg-gray-700"
+                >Register</a
+              >
+
+            </div>
+          </nav>
+        </div>
+        <div
+          class="flex flex-col px-16 py-5 h-full w-full bg-zinc-100 max-w-[1990px] rounded-[50px] max-md:px-5 max-md:mt-10 max-md:max-w-full"
+        >
+          <main class="mt-14 mb-3 ml-14 max-md:mt-10 max-md:max-w-full">
+            <section class="flex gap-5 max-md:flex-col max-md:gap-0 max-md:">
+              <div class="w-full max-md:ml-0 max-md:w-full">
+                <article>
+                  <h2
+                    class="text-4xl font-bold text-blue-950 mt-3.5 max-md:max-w-full max-md:text-4xl"
+                  >
+                    <span class="text-slate-500">AI Powered </span><br />
+                    <span class="text-slate-500">Personalised</span><br />
+                    <span>Education Platform</span>
+                  </h2>
+                  <p
+                    class="text-2xl text-zinc-600 mt-24 max-md:mt-10 max-md:max-w-full"
+                  >
+                    Make learning an adventure. Gamified experiences,<br />
+                    interactive lessons, and AI-powered doubt clearing<br />
+                    boost engagement. Explore our world of learning!
+                  </p>
+                </article>
+                <div
+                  class="pl-9 mt-12 bg-white rounded-2xl max-md:pl-5 max-md:mt-10 max-w-[700px] h-[60px]"
+                >
+                  <form
+                    class="flex items-center h-full gap-5 max-md:flex-col max-md:gap-0 max-md"
+                  >
+                    <div
+                      class="flex items-center w-full max-md:ml-0 max-md:w-full"
+                    >
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a4a965cfe9aada053d6b1bcf0aa84c66faa4632d7921999dab694a1928f4daa?apiKey=86ebbb7f47df4c4e96db2f03b5548c6a&"
+                        alt="Interactive Learning Graphic"
+                        class="max-w-full aspect-[0.79] h-[25px] w-[100px] max-md:mt-10"
+                      />
+                      <label
+                        for="searchCourse"
+                        class="flex gap-5 justify-between self-stretch my-auto text-3xl font-medium whitespace-nowrap text-zinc-500 max-md:flex-wrap max-md:mt-10 max-md:max-w-full sr-only"
+                        >What do you want to learn</label
+                      ><a href="{% url 'login' %}">
+                      <input
+                        type="text"
+                        id="searchCourse"
+                        placeholder="What do you want to learn"
+                        class="font-medium text-2xl w-full max-md:ml-0 max-md:w-full"
+                        aria-label="What do you want to learn"
+                      /></a>
+                    </div>
+                    <a href="{% url 'login' %}">
+                    <button
+                      type="submit"
+                      class="justify-center px-8 py-3 w-100 text-2xl font-medium text-white whitespace-nowrap bg-indigo-600 rounded-r-xl focus:ring focus:ring-indigo-300 focus:outline-none max-md:px-5 max-md:mt-10"
+                      tabindex="0"
+                    >
+                      Search Course
+                    </button></a>
+                  </form>
+                </div>
+              </div>
+              <aside class="ml-5 max-md:ml-0 max-md:w-full"></aside>
+              <aside class="ml-5 w-[28%] max-md:ml-0 max-md:w-full">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/a6e2e39121ee10e8ab139c8f7220fbfa9fe96877fc3ae5f394306772e12f3683?apiKey=86ebbb7f47df4c4e96db2f03b5548c6a&"
+                  alt="Learning Assessment Tools Graphic"
+                  class="self-end max-w-full aspect-[0.79] h-45 w-[300px]"
+                  style="position: absolute; top: 410px; left: 920px"
+                />
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/a42e81d9ff1775f7ad0f51ff71310e1551d520d7ef8b2d371dc3eb8aa671bc31?apiKey=86ebbb7f47df4c4e96db2f03b5548c6a&"
+                  alt="Learn about topics the fun way"
+                  class="self-end max-w-full aspect-[0.79] h-45 w-[300px]"
+                />
+
+                
+                </div>
+              </aside>
+            </section>
+          </main>
+        </div>
+      </body>
+    </html>
+  </body>
+</html>

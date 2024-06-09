@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<nav class="flex justify-center gap-5 self-center mt-6 text-base font-medium text-center whitespace-nowrap text-stone-900 max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
+  <a href="{% url 'biology_chapters' %}" class="grow justify-center px-7 py-5 bg-white rounded-xl bg-stone-900 max-md:px-5 hover:bg-black hover:text-white" tabindex="0">Biology</a>
+  <a href="{% url 'chemistry_chapters' %}" class="grow justify-center px-12 py-5 bg-white rounded-xl max-md:px-5 hover:bg-black hover:text-white" tabindex="0">Chemistry</a>
+  <a href="{% url 'physics_chapters' %}" class="grow justify-center px-8 py-5 bg-white rounded-xl max-md:px-5 hover:bg-black hover:text-white" tabindex="0">Physics</a>
+  <!-- <a href="#" class="grow justify-center px-11 py-5 bg-white rounded-xl max-md:px-5 hover:bg-black hover:text-white" tabindex="0">English</a> -->
+  <!-- <a href="#" class="grow justify-center px-14 py-5 bg-white rounded-xl max-md:px-5 hover:bg-black hover:text-white" tabindex="0">Art</a> -->
+</nav>
+
+<div class="flex gap-5 self-center mt-8 max-md:flex-wrap max-md:max-w-full relative justify-center">
+
+</div>
+<section class="flex px-12 relative justify-center">
+    <div class="flex gap-5">
+      <article class="flex flex-col w-3/12 max-md:ml-0 max-md:w-full">
+        <a href="{% url 'biology_chapters' %}">
+          <div class="flex flex-col grow pb-12 w-full text-4xl font-bold tracking-wide bg-white rounded-2xl shadow-2xl leading-[51px] text-stone-900 max-md:mt-6">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/43c6f0896b04020021decfc66b4332fe71860839a251362dabf69b5f98e1251f?apiKey=934640e8367a402b81c84e5fbb0103f6&" alt="Math Course for 3rd Grade Children" class="w-full aspect-[1.75]" />
+            <div class="self-center mt-12 max-md:mt-10">Biology course for 6th grade children</div>
+          </div>
+        </a>
+      </article>
+      <article class="flex flex-col ml-5 w-3/12 max-md:ml-0 max-md:w-full">
+        <a href="{% url 'chemistry_chapters' %}">
+          <div class="flex flex-col grow justify-center text-4xl font-bold tracking-wide leading-[51px] text-stone-900 max-md:mt-6">
+            <div class="flex flex-col pb-12 bg-white rounded-2xl shadow-2xl">
+              <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/082f1c22cfe11b3bb54a364b89627c8a2d5241d598996faa6f36d68126a61767?apiKey=934640e8367a402b81c84e5fbb0103f6&" alt="Science Course for 3rd Grade Children" class="w-full aspect-[1.75]" />
+              <div class="self-center mt-12 max-md:mt-10">Chemistry course for 6th grade children</div>
+            </div>
+          </div>
+        </a>
+      </article>
+      <article class="flex flex-col ml-5 w-3/12 max-md:ml-0 max-md:w-full">
+        <a href="{% url 'physics_chapters' %}">
+          <div class="flex flex-col grow pb-12 w-full text-4xl font-bold tracking-wide bg-white rounded-2xl shadow-2xl leading-[51px] text-stone-900 max-md:mt-6">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7cbe3b1cd1216d2c5289b3fe4793c8dffb76d4921b770b248e1461492f85bde7?apiKey=934640e8367a402b81c84e5fbb0103f6&" alt="English Course for 3rd Grade Children" class="w-full aspect-[1.75]" />
+            <div class="self-center mt-12 max-md:mt-10">Physics course for 6th grade children</div>
+          </div>
+        </a>
+      </article>
+      <article class="flex flex-col ml-5 w-3/12 max-md:ml-0 max-md:w-full">
+        <a href="{% url 'custom_content' %}">
+          <div class="flex flex-col grow pb-12 w-full text-4xl font-bold tracking-wide bg-white rounded-2xl shadow-2xl leading-[51px] text-stone-900 max-md:mt-6">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7cbe3b1cd1216d2c5289b3fe4793c8dffb76d4921b770b248e1461492f85bde7?apiKey=934640e8367a402b81c84e5fbb0103f6&" alt="English Course for 3rd Grade Children" class="w-full aspect-[1.75]" />
+            <div class="self-center mt-12 max-md:mt-10">Custom content</div>
+          </div>
+        </a>
+      </article>
+    </div>
+  </section>
+
+</body>
+{% endblock %}

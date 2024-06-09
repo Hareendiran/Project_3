@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chemistry</title>
+    <meta name="author" content="David Grzyb" />
+    <meta name="description" content="" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
+
+      .font-family-karla {
+        font-family: karla;
+      }
+    </style>
+
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-white font-family-karla">
+    <div class="bg-gray-300">
+      <nav class="py-4 px-6 flex justify-between items-center">
+        <a href="/" class="text-xl font-semibold text-blue-800">Learning App</a>
+        <div class="space-x-6">
+          <a href="{% url '' %}" class="text-lg font-semibold hover:text-gray-500">Home</a>
+          <a href="{% url 'about-us' %}" class="text-lg font-semibold hover:text-gray-500"
+            >About Us</a
+          >
+          <a href="{% url 'dashboard' %}" class="text-lg font-semibold hover:text-gray-500"
+            >Courses</a
+          >
+          <a href="{% url 'contact' %}" class="text-lg font-semibold hover:text-gray-500"
+            >Contact us</a
+          >
+          <a
+            href="{% url 'logout' %}"
+            class="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-gray-700"
+            >Logout</a
+          >
+         
+
+        </div>
+      </nav>
+    </div>
+    <header class="w-full container mx-auto">
+      <div class="flex flex-col items-center py-12">
+        <a
+          class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl"
+          href="#"
+        >
+          {{item.title}}
+        </a>
+        <p class="text-lg text-gray-600">Chemistry</p>
+      </div>
+      <div class="border-t-4 border-gray-800 my-4"></div>
+    </header>
+
+    <!-- Topic Nav -->
+
+    <div class="container mx-auto flex flex-wrap py-6">
+      <!-- Posts Section -->
+      <section class="w-full md:w-2/3 flex flex-col items-center px-3">
+        <article class="flex flex-col shadow my-4">
+          <!-- Article Image -->
+          <a href="#" class="hover:opacity-95">
+            <img src="{{item.image.url}}" alt="chapter image">
+          </a>
+          <div class="bg-white flex flex-col justify-start p-6">
+            
+            <a href="#" class="pb-6" id="chapterContent"> {{item.content}}</a>
+          </div>
+        </article>
+      </section>
+
+      <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+          <p class="text-xl font-semibold pb-5">Get Simpler Explanation</p>
+          </p>
+          <aside>
+            <button id="getSimplerExplanation" value="simpler-explanation" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">Simpler Explanation</button>
+          </aside>
+          
+        </div>
+
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+          <p class="text-xl font-semibold pb-5">Get Extra Information</p>
+          <div class="grid grid-cols-3 gap-3"></div>
+          <aside>
+            <p id="testContent">{{processed_data}}</p>
+            <button id="getExtraInfo" value="extra-information" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">Extra Information</button>
+          </aside>
+    
+        </div>
+
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+          <p class="text-xl font-semibold pb-5">Get Questions with Answers</p>
+          </p>
+          <aside>
+            <button id="getQuestionsAndAnswers" value="question-answer" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">Questions</button>
+          </aside>
+          
+        </div>
+      </aside>
+    </div>
+
+    <script>
+      const chapterId = window.location.pathname.split('/')[2]; 
+      const content=document.getElementById("chapterContent");
+      const chapterContent=content.textContent;
+      const generatedContent=document.getElementById("testContent");
+
+      const getSimplerContentButton=document.getElementById("getSimplerExplanation");
+      getSimplerContentButton.addEventListener("click",
+      function(){
+        const buttonID="simpler explanation";
+        // console.log(chapterContent);
+        content.textContent="Getting simpler explanation .........";
+        sendContentToDjango(chapterId,chapterContent,buttonID);
+      })
+
+      const getExtraContentButton=document.getElementById("getExtraInfo");
+      getExtraContentButton.addEventListener("click",function(){
+        const buttonID="extra information";
+        // console.log(chapterContent);
+        content.innerHTML="Getting extra information ........";
+        sendContentToDjango(chapterId,chapterContent,buttonID);
+      })
+
+      const getQuestionAnswerButton=document.getElementById("getQuestionsAndAnswers");
+      getQuestionAnswerButton.addEventListener("click",function(){
+        const buttonID="5 question and answers with answers at the end. Make sure the questions are seperated by a line ";
+        // console.log(chapterContent);
+        content.innerHTML="Questions are being framed ";
+        sendContentToDjango(chapterId,chapterContent,buttonID);
+      })
+
+      function sendContentToDjango(chapterId, chapterContent, buttonID) {
+        // console.log(chapterContent)
+        // console.log(chapterId)
+    fetch(`/biology/${chapterId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            'chapterContent': chapterContent,
+            'buttonID': buttonID
+        })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data); 
+            const contentElement = document.getElementById("chapterContent");
+            const answers = data.split("<br/><br/>---<br/><br/>");
+            const formattedAnswers = answers.map(answer => "<p>" + answer.trim() + "</p>").join("");
+            contentElement.innerHTML = formattedAnswers; 
+        })
+        .catch(error => console.error('Error:', error));
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{%block title %} {%endblock%} - Learning App</title>
+  </head>
+  <body>
+    <div class="bg-gray-300">
+      <nav class="py-4 px-6 flex justify-between items-center">
+        <a href="/" class="text-xl font-semibold text-blue-800">Learning App</a>
+        <div class="space-x-6">
+          <a href="{% url '' %}" class="text-lg font-semibold hover:text-gray-500">Home</a>
+          <a href="{% url 'about-us' %}" class="text-lg font-semibold hover:text-gray-500"
+            >About Us</a
+          >
+          <a href="{% url 'dashboard' %}" class="text-lg font-semibold hover:text-gray-500"
+            >Courses</a
+          >
+          <a href="{% url 'contact' %}" class="text-lg font-semibold hover:text-gray-500"
+            >Contact us</a
+          >
+          <a
+                href="{% url 'logout' %}"
+                class="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-gray-700"
+                >Logout</a
+              >
+        </div>
+      </nav>
+    </div>
+    <div>{%block content%} {% endblock %}</div>
+  </body>
+</html>

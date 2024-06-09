@@ -1,4 +1,4 @@
-p# Personalized Education Platform
+Personalized Education Platform
 
 ## Overview
 The Personalized Education Platform is a web application built on Django and OpenAI, designed to revolutionize the way users access and interact with educational content. The platform enables users to personalize their learning experience by providing simplified explanations, additional information, and interactive question-and-answer features, all powered by AI.
@@ -36,4 +36,8 @@ python manage.py runserver
 
 2. Open your web browser and navigate to `http://localhost:8000`.
 
-3. Load the content you want to view and click on buttons to use AI features. 
+3. Load the content you want to view and click on buttons to use AI features.
+
+This project was worked on by :
+
+Hareendiran N Akshay B Rex Joseph J Skanda K S
